@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interactipy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Interactipy" Height="343.507" Width="531.629" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
-        
+        <TextBox x:Name="txt_output" Margin="10,10,9.6,32.6" PreviewKeyDown="txt_output_PreviewKeyDown"/>
+        <TextBox x:Name="txt_input" VerticalAlignment="Bottom" Margin="10,0,9.6,9.6" KeyDown="txt_input_KeyDown"/>
     </Grid>
 </Window>
