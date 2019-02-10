@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using Interactipy.Engine;
+using System.IO;
+using System.Diagnostics;
 
 namespace Interactipy
 {
@@ -26,7 +28,7 @@ namespace Interactipy
         public MainWindow()
         {
             InitializeComponent();
-
+            DataContext = this;
             
         }
 
@@ -45,12 +47,16 @@ namespace Interactipy
                 
                 txt_input.Clear();
             }
+            
         }
 
         private void readOutputLoop()
         {
             while (true)
             {
+                //if (engine.OutputStream.Peek() < 0)
+                //    continue;
+
                 char ch = (char)engine.OutputStream.Read();
                 DispatcherOperation op = Dispatcher.BeginInvoke(new Action(() =>
                 {
@@ -63,6 +69,8 @@ namespace Interactipy
         {
             while (true)
             {
+                //if (engine.InformationStream.Peek() < 0)
+                //    continue;
                 char ch = (char)engine.InformationStream.Read();
                 DispatcherOperation op = Dispatcher.BeginInvoke(new Action(() =>
                 {
@@ -74,12 +82,20 @@ namespace Interactipy
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             engine = new PyExeEngine(@"C:\Users\geon0\AppData\Local\Programs\Python\Python37-32\python.exe");
-            engine.Start(@"C:\Users\geon0\AppData\Local\Programs\Python\Python37-32");
+            engine.Start(Directory.GetCurrentDirectory());
+            engine.WorkFinished += (s, ew) => {
+                Debug.WriteLine("py>");
+            };
+            engine.ErrorOccured += (s, ew) => {
+                Debug.WriteLine(ew.ErrorMessage);
+            };
 
             readOutputThread = new Thread(new ThreadStart(readOutputLoop));
             readinformationthread = new Thread(new ThreadStart(readInformationLoop));
-            readinformationthread.Start();
+            //readinformationthread.Start();
             readOutputThread.Start();
+
+            Debug.WriteLine("Loaded!");
         }
 
         private void Window_Closed(object sender, EventArgs e)

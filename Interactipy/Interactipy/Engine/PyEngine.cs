@@ -13,7 +13,18 @@ namespace Interactipy.Engine
 
         public StreamReader OutputStream { get; set; }
         public StreamReader InformationStream { get; set; }
+
+
+        protected bool isBusy = false;
+        public bool IsBusy { get { return isBusy; } }
+
         
+
+        public abstract event EventHandler<ErrorOccuredEventArgs> ErrorOccured;
+        public abstract event EventHandler WorkFinished;
+
+
+        public abstract bool IsEnded { get; }
 
 
         public abstract bool Execute(string command);
