@@ -94,7 +94,7 @@ namespace Interactipy.Engine
                 }
                 if (DateTime.Now - stamp > new TimeSpan(0,0,0,0,timeout))
                 {
-                    throw new Exception("not responding");
+                    throw new ExcutableNotRespondingException("not responding");
                 }
             }
             return result;

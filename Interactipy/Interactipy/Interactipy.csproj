@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Engine\EngineExceptions.cs" />
     <Compile Include="Engine\EnvironmentSelector.cs" />
     <Compile Include="Engine\PyExecutable.cs" />
     <Compile Include="Engine\PyProcess.cs" />
