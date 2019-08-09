@@ -27,6 +27,7 @@ namespace Interactipy.Engine
 
         public void Refresh()
         {
+            Environments.Clear();
             foreach (var path in SearchPath)
             {
                 if (!Directory.Exists(path))
