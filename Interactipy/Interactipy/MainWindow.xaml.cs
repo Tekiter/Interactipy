@@ -32,6 +32,10 @@ namespace Interactipy
             
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TestWindow win = new TestWindow();
+            win.Show();
+        }
     }
 }

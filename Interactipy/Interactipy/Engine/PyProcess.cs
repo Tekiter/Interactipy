@@ -16,6 +16,7 @@ namespace Interactipy.Engine
             proc.StartInfo.FileName = pyexe;
             proc.StartInfo.Arguments = args;
             proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.RedirectStandardInput = true;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.RedirectStandardError = true;

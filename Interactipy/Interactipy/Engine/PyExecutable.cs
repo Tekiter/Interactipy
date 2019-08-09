@@ -72,6 +72,7 @@ namespace Interactipy.Engine
             info.Arguments = @"Python\vercheck.py";
             info.WorkingDirectory = Environment.CurrentDirectory;
             info.UseShellExecute = false;
+            info.CreateNoWindow = true;
             info.RedirectStandardOutput = true;
             info.RedirectStandardError = true;
 
