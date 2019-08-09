@@ -99,5 +99,10 @@
   <ItemGroup>
     <None Include="Python\SimpleInteractive.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Python\vercheck.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -63,15 +63,17 @@ namespace Interactipy.Engine
 
         
 
-        public string GetVersionString(int timeout = 500)
+        public string GetVersionString(int timeout = 200)
         {
             Process proc = new Process();
 
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = Path;
-            info.Arguments = "-V";
+            info.Arguments = @"Python\vercheck.py";
+            info.WorkingDirectory = Environment.CurrentDirectory;
             info.UseShellExecute = false;
             info.RedirectStandardOutput = true;
+            info.RedirectStandardError = true;
 
             proc.StartInfo = info;
 
@@ -84,12 +86,13 @@ namespace Interactipy.Engine
                 if (proc.StandardOutput.Peek() > -1)
                 {
                     char ch = (char)proc.StandardOutput.Read();
+                    
                     if (ch == '\r' || ch == '\n') {
                         break;
                     }
                     result += ch;
                 }
-                if (DateTime.Now - stamp > new TimeSpan(0,0,0,timeout))
+                if (DateTime.Now - stamp > new TimeSpan(0,0,0,0,timeout))
                 {
                     throw new Exception("not responding");
                 }
