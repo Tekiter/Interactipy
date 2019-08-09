@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Engine\EnvironmentSelector.cs" />
     <Compile Include="Engine\PyExecutable.cs" />
+    <Compile Include="Engine\PyProcess.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

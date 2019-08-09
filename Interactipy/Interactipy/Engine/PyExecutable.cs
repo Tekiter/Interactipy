@@ -100,21 +100,14 @@ namespace Interactipy.Engine
             return result;
         }
 
-        public Process Run(string args, string workingDirectory)
+        public PyProcess Run(string args, string workingDirectory)
         {
-            Process proc = new Process();
-            proc.StartInfo.FileName = Path;
-            proc.StartInfo.Arguments = args;
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.RedirectStandardInput = true;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.RedirectStandardError = true;
-            proc.StartInfo.WorkingDirectory = workingDirectory;
-            proc.StartInfo.EnvironmentVariables["PYTHONPATH"] = System.IO.Path.GetDirectoryName(Path);
-            proc.StartInfo.EnvironmentVariables["PYTHONIOENCODING"] = "UTF-8";
-            proc.StartInfo.EnvironmentVariables["PYTHONUNBUFFERED"] = "1";
-            
-            proc.Start();
+            List<string> pythonPathes = new List<string>()
+            {
+                System.IO.Path.GetDirectoryName(Path)
+            };
+
+            PyProcess proc = PyProcess.Create(Path, args, workingDirectory, pythonPathes);
 
             return proc;
         }
