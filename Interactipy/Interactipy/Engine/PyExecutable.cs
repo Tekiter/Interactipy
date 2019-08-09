@@ -100,16 +100,22 @@ namespace Interactipy.Engine
             return result;
         }
 
+
+        public PyProcess Run(string args, string workingDirectory, IEnumerable<string> pythonPath)
+        {
+            PyProcess proc = PyProcess.Create(Path, args, workingDirectory, pythonPath);
+
+            return proc;
+
+        }
         public PyProcess Run(string args, string workingDirectory)
         {
             List<string> pythonPathes = new List<string>()
             {
                 System.IO.Path.GetDirectoryName(Path)
             };
-
-            PyProcess proc = PyProcess.Create(Path, args, workingDirectory, pythonPathes);
-
-            return proc;
+            return Run(args, workingDirectory, pythonPathes);
+            
         }
     }
 }
