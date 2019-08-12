@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interactipy"
         mc:Ignorable="d"
-        Title="TestWindow" Height="462" Width="710.648">
+        Title="TestWindow" Height="462" Width="820.248">
     <Grid>
-        <ListBox x:Name="PyExeList" Margin="10,10,0,9.8" HorizontalAlignment="Left" Width="215">
-            
+        <ListBox x:Name="PyExeList" Margin="10,10,0,9.8" HorizontalAlignment="Left" Width="159">
+
         </ListBox>
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Content="Refresh" Margin="230,10,0,0" Click="PyExe_Refresh_Click"/>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Content="Refresh" Margin="174,10,0,0" Click="PyExe_Refresh_Click" Width="53"/>
+
+        <TextBox x:Name="txt_content" VerticalScrollBarVisibility="Visible" Margin="240,10,9.6,37.8" TextWrapping="WrapWithOverflow"/>
+        <TextBox x:Name="txt_input" Height="23" Margin="240,0,9.6,9.8" VerticalAlignment="Bottom" KeyDown="Txt_input_KeyDown"/>
+        <Button x:Name="btn_go" Content="Go" HorizontalAlignment="Left" Margin="174,34,0,0" VerticalAlignment="Top" Width="53" Height="36" Click="Btn_go_Click"/>
+
     </Grid>
 </Window>

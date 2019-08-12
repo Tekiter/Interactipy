@@ -42,5 +42,50 @@ namespace Interactipy
                 PyExeList.Items.Add(i.Version);
             }
         }
+
+        PyProcess curproc = null;
+        private void Btn_go_Click(object sender, RoutedEventArgs e)
+        {
+            int selidx = PyExeList.SelectedIndex;
+            if (selidx >= 0)
+            {
+
+                if (curproc != null)
+                {
+                    curproc.RawProcess.Refresh();
+                    curproc.RawProcess.Close();
+                    txt_content.Clear();
+                }
+
+                var environ = Environ.Environments[selidx];
+
+                var proc = environ.Run("-i", Environment.CurrentDirectory);
+
+                proc.RawProcess.OutputDataReceived += RawProcess_OutputDataReceived;
+                proc.RawProcess.ErrorDataReceived += RawProcess_OutputDataReceived;
+                proc.RawProcess.BeginOutputReadLine();
+                proc.RawProcess.BeginErrorReadLine();
+
+                curproc = proc;
+            }
+        }
+
+        private void RawProcess_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
+        {
+            txt_content.Dispatcher.BeginInvoke(new Action(() => {
+                txt_content.Text += e.Data + "\n";
+            }), null);
+            
+        }
+
+        private void Txt_input_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                curproc.RawProcess.StandardInput.WriteLine(txt_input.Text);
+
+                txt_input.Clear();
+            }
+        }
     }
 }
