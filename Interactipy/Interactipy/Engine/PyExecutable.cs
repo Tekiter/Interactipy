@@ -63,7 +63,7 @@ namespace Interactipy.Engine
 
         
 
-        public string GetVersionString(int timeout = 200)
+        public string GetVersionString(int timeout = 500)
         {
             Process proc = new Process();
 
